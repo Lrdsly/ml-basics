@@ -18,7 +18,7 @@ func GenerateRandomWeights(featureCount int) [][]float64 {
 }
 
 func main() {
-	data, _ := r.ReadData("dataset/dataset.csv")
+	data, _ := r.ReadData("dataset/logistic-regression.csv")
 	X, Yr, _ := m.SplitColumns(1, data)
 	W := GenerateRandomWeights(len(X[0]))
 	b := 0.0
