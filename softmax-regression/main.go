@@ -26,7 +26,8 @@ func main() {
 	fmt.Printf("Starting: %v\n", W)
 	
 	for i:=0; i<1500; i++ {
-		W = r.RefineWeights(lrate, Bios, X, W, Labels)
+		W, Bios = r.RefineWeights(lrate, Bios, X, W, Labels)
 	}
 	fmt.Printf("Final: %v\n", W)
+	fmt.Printf("Bios: %v\n", Bios)
 }

@@ -143,6 +143,16 @@ func RowSum(x [][]float64) [][]float64 {
 	}
 	return result
 }
+// It returns a row matrix, use Transpose if you need a column one
+func ColumnSum(x [][]float64) [][]float64 {
+	result := GenerateMatrix(1, len(x))
+	for i := range x{
+		for j := range x[i] {
+			result[0][j] += x[i][j]
+		}
+	}
+	return result
+}
 
 func ElementWiseExp(value float64) float64 {
 	return math.Exp(value)
