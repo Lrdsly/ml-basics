@@ -1,6 +1,9 @@
 package matrix
 
-import "errors"
+import ("errors"
+		"math")
+
+type MatrixFunc func(float64) float64
 
 func GenerateMatrix(rows, columns int) [][]float64{
 	result := [][]float64{}
@@ -84,6 +87,16 @@ func Addition(x, y [][]float64) ([][]float64) {
 	return result
 }
 
+func Transpose(x [][]float64) [][]float64 {
+	result := GenerateMatrix(len(x), len(x[0]))
+	for i := range x{
+		for j := range x[i] {
+			result[j][i] = x[i][j]
+		}
+	}
+	return result
+}
+
 func SplitColumns(right_columns int, x [][]float64) ([][]float64, [][]float64, error) {
 	rows, columns := len(x), len(x[0])
 	if right_columns > columns {
@@ -107,4 +120,48 @@ func SplitColumns(right_columns int, x [][]float64) ([][]float64, [][]float64, e
 	}
 
 	return left_matrix, right_matrix, nil
+}
+
+func MapElements(x [][]float64, f MatrixFunc) [][]float64 {
+	final_matrix := GenerateMatrix(len(x), len(x[0]))
+	for i := range x {
+		for j:= range x[i] {
+			final_matrix[i][j] = f(x[i][j])
+		}
+	}
+	return final_matrix
+}
+
+// ---- softmax regression methods ----
+
+func RowSum(x [][]float64) [][]float64 {
+	result := GenerateMatrix(len(x), 1)
+	for i := range x{
+		for j := range x[i] {
+			result[i][0] += x[i][j]
+		}
+	}
+	return result
+}
+
+func ElementWiseExp(value float64) float64 {
+	return math.Exp(value)
+}
+
+func RowScalerMultipliction(row []float64, scaler float64) []float64{
+	result := make([]float64, len(row))
+	for i := range row {
+		result[i] = row[i] * scaler
+	}
+	return result
+}
+
+func RowToRowAddition(row1, row2 []float64) []float64 {
+	if len(row1) != len(row2) {return nil}
+
+	result := make([]float64, len(row1))
+	for i := range row1 {
+		result[i] = row1[i] + row2[i]
+	}
+	return result
 }
