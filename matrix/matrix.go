@@ -88,7 +88,7 @@ func Addition(x, y [][]float64) ([][]float64) {
 }
 
 func Transpose(x [][]float64) [][]float64 {
-	result := GenerateMatrix(len(x), len(x[0]))
+	result := GenerateMatrix(len(x[0]), len(x))
 	for i := range x{
 		for j := range x[i] {
 			result[j][i] = x[i][j]

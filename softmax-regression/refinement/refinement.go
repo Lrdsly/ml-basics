@@ -13,7 +13,7 @@ func Softmax(x [][]float64) [][]float64 {
 	return result
 }
 
-func RefiningWeights(lrate float64, Bios []float64, X,W,Labels [][]float64) [][]float64 {
+func RefineWeights(lrate float64, Bios []float64, X,W,Labels [][]float64) [][]float64{
 	z := m.Multipliction(X, W)
 	for i := range z {
 		z[i] = m.RowToRowAddition(z[i], Bios)
@@ -22,6 +22,7 @@ func RefiningWeights(lrate float64, Bios []float64, X,W,Labels [][]float64) [][]
 
 	// gradientW = X^T * (Zsoftmax - Labels)   |  W = W - (lrate * gradientW)
 	gradientW := m.Multipliction(m.Transpose(X), (m.Addition(z, m.ScalerMultipliction(-1, Labels))))
-	W = m.Addition(W, m.ScalerMultipliction(lrate, m.ScalerMultipliction(-1, gradientW)))
-	return W
+	gradientW = m.ScalerMultipliction(1.0/float64(len(X)), gradientW) // 1/N
+	nw := m.Addition(W, m.ScalerMultipliction(lrate, m.ScalerMultipliction(-1, gradientW)))
+	return nw
 }
