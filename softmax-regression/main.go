@@ -6,6 +6,16 @@ import (r "mlbase/softmax-regression/refinement"
 		"fmt"
 	)
 
+// This function will be used to predict when Weigts be confirmed.
+func ApplyWeights(Bios []float64, W, X [][]float64) {
+	z := m.Multipliction(X, W)
+	for i := range z {
+		z[i] = m.RowToRowAddition(z[i], Bios)
+	}
+	z = Softmax(z)
+	return a
+}
+
 func GenerateRandomWeights(rows, columns int) [][]float64 {
 	W := m.GenerateMatrix(rows, columns)
 	for i := range W {
