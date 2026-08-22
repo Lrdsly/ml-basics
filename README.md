@@ -1,12 +1,11 @@
-# Machine Learning Basics
+# Scratch Machine Learning in Go
 
-## Description
+In this repository, I implemented machine learning fundamentals from scratch using Go to truly understand the underlying mechanics:
 
-In this repo I examine different machine learning branches and publish them one by one to check and learn together.
-Everything is built from scratch instead of using ready-to-use packages, so we can deeply learn the required mathematics.
+1. **Matrix Operations:** Built core matrix manipulation functions from the ground up without external math libraries.
+2. **Models Implemented & Tested:** Implemented both **Logistic Regression** and **Softmax Regression** using the custom matrix functions. The models were fully trained, tested, and successfully reached convergence.
+3. **Project Status:** The project is wrapped up right before major refactoring, abstraction, and performance optimization. You can follow the continuation of this journey and deeper ML concepts in my upcoming Python & PyTorch repositories.
 
-### Follow Me ...!
+*Note for Go developers:* Beyond the math and ML challenges, I was also learning Go on the fly. As a result, some parts might not follow idiomatic Go (for instance, using `append` instead of `make` when initializing matrices). If you're a Go expert, I apologize if the code didn't satisfy you!
 
-## Technologies
-- Go (Programming language)
-- Git/Github (Version control)
+Thanks for following along.
