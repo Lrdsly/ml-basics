@@ -1,4 +1,4 @@
-package refinement
+package matrix
 
 import ("os"
 		"strconv"
